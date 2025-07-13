@@ -1,7 +1,7 @@
 #root {
     text-align: center;
 }
-.topbar {
+.header {
     background-color: red;
     height: 40px;
 }

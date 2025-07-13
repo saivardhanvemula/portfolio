@@ -1,21 +1,20 @@
 import { useState } from "react";
 import "./App.css";
-import TopBar from "./components/TopBar";
 import LeftContainer from "./components/Left";
 import RightContainer from "./components/RightContainer";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
-
     return (
         <>
             <div className="page">
-                <TopBar/>
+                <Header />
                 <div className="container">
-                    <LeftContainer/>
-                    <RightContainer/>
+                    <LeftContainer />
+                    <RightContainer />
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         </>
     );
