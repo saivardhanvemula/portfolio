@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import TopBar from "./components/topBar";
-import LeftContainer from "./components/leftContainer";
+import TopBar from "./components/TopBar";
+import LeftContainer from "./components/Left";
 import RightContainer from "./components/RightContainer";
 import Footer from "./components/Footer";
 
