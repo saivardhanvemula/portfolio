@@ -1,9 +1,25 @@
 #root {
-    text-align: center;
+    font-family: Raster, monospace;
 }
+
 .header {
-    background-color: red;
-    height: 40px;
+    background-color: black;
+    /* background-color: red; */
+    height: 50px;
+    color: white;
+    padding: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header h1 {
+    color: #00ff00;
+    font-size: 1.1rem;
+    margin: 0;
+}
+.header p {
+    color: grey;
 }
 .left {
     background-color: green;
@@ -16,17 +32,16 @@
 .footer {
     background-color: yellow;
     height: 30px;
-
 }
 
-.page{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
 }
-.container{
-  display: flex;
-  height: auto;
-  flex: 1;
+.container {
+    display: flex;
+    height: auto;
+    flex: 1;
 }
