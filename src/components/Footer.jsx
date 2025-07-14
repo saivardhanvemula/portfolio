@@ -1,8 +1,11 @@
 import React from 'react'
 
 const Footer = () => {
+  const timeStamp = new Date().toLocaleString();
   return (
-    <div className='footer'>Footer</div>
+    <div className='footer'>
+      <span>{timeStamp}</span>
+    </div>
   )
 }
 
