@@ -4,7 +4,6 @@
 }
 
 .header {
-    /* background-color: black; */
     height: 50px;
     color: white;
     padding: 10px;
@@ -12,6 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-bottom: #00ff00 2px solid;
 }
 .header h1 {
     color: #00ff00;
@@ -22,11 +22,17 @@
     color: grey;
 }
 .left {
-    background-color: green;
     width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-right: white 1px solid;
+    font-size: 2.5rem;
 }
 .right {
-    background-color: blue;
+    padding: 15px;
+    color: #00ff00;
     width: 60%;
 }
 .footer {
@@ -34,6 +40,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
+    border-top: #00ff00 2px solid;
 }
 .footer span {
     color: #00ff00;
@@ -50,4 +57,16 @@
     display: flex;
     height: auto;
     flex: 1;
+}
+.cursor {
+  display: inline-block;
+  width: 4px;
+  height: .75em;
+  background-color: #00ff00;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

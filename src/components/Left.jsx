@@ -2,7 +2,7 @@ import React from 'react'
 
 const Left = () => {
   return (
-    <div className='left'>leftContainer</div>
+    <div className='left'>Profile</div>
   )
 }
 

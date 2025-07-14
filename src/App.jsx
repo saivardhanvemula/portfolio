@@ -11,7 +11,7 @@ function App() {
             <div className="page">
                 <Header />
                 <div className="container">
-                    <LeftContainer />
+                    {/* <LeftContainer /> */}
                     <RightContainer />
                 </div>
                 <Footer />
