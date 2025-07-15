@@ -10,9 +10,10 @@ const RightContainer = () => {
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
+            console.log("First render, skipping command processing.");
             return;
         }
-
+        console.log("cmds", cmds);
         // Instead of using ReactDOM.createRoot, update state to render new Command
         setComponents((prev) => [...prev, <Command key={prev.length} setcmds={setcmds} />]);
     }, [cmds]);
