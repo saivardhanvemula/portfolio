@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom/client";
 import Command from "./Command";
 
 const RightContainer = () => {
     const parentRef = useRef(null);
     const isFirstRender = useRef(true);
     const [cmds, setcmds] = useState([]);
-    const [commandInstances, setCommandInstances] = useState([]); // store count or id
-
     useEffect(() => {
         if (isFirstRender.current) {
-            isFirstRender.current = false;
-            console.log("First render, skipping command processing.");
-            return;
+            const mountPoint = document.createElement("div");
+            if (parentRef.current) {
+                parentRef.current.appendChild(mountPoint);
+                const root = ReactDOM.createRoot(mountPoint);
+                root.render(<Command setcmds={setcmds} />);
+            }
         }
-
-        console.log("cmds", cmds);
-        // Instead of storing JSX, store an index
-        setCommandInstances((prev) => [...prev, prev.length]);
     }, [cmds]);
 
     return (
@@ -30,11 +28,6 @@ const RightContainer = () => {
                 <div>Welcome to my interactive portfolio terminal!</div>
                 <div>Type 'help' to see the available commands.</div>
             </div>
-
-            {/* Render each Command component */}
-            {commandInstances.map((id) => (
-                <Command key={id} setcmds={setcmds} />
-            ))}
         </div>
     );
 };
