@@ -8,14 +8,12 @@ const RightContainer = () => {
     const [cmds, setcmds] = useState([]);
     useEffect(() => {
         if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-        const mountPoint = document.createElement("div");
-        if (parentRef.current) {
-            parentRef.current.appendChild(mountPoint);
-            const root = ReactDOM.createRoot(mountPoint);
-            root.render(<Command setcmds={setcmds} />);
+            const mountPoint = document.createElement("div");
+            if (parentRef.current) {
+                parentRef.current.appendChild(mountPoint);
+                const root = ReactDOM.createRoot(mountPoint);
+                root.render(<Command setcmds={setcmds} />);
+            }
         }
     }, [cmds]);
 

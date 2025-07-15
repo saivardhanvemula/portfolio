@@ -1,6 +1,7 @@
 #root {
     font-family: Raster, monospace;
     background-color: black;
+    height: 100dvh;
 }
 
 .header {
