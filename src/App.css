@@ -2,6 +2,7 @@
     font-family: Raster, monospace;
     background-color: black;
     height: 100dvh;
+    overflow: hidden;
 }
 
 .header {
