@@ -1,12 +1,20 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 
 const Footer = () => {
-  const timeStamp = new Date().toLocaleString();
-  return (
-    <div className='footer'>
-      <span>{timeStamp}</span>
-    </div>
-  )
-}
+    const [timeStamp, setTimeStamp] = useState(new Date().toLocaleString());
 
-export default Footer
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimeStamp(new Date().toLocaleString());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="footer">
+            <span>{timeStamp}</span>
+        </div>
+    );
+};
+
+export default Footer;
