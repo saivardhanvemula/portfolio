@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom/client";
 import Command from "./Command";
 
 const RightContainer = () => {
     const parentRef = useRef(null);
     const isFirstRender = useRef(true);
     const [cmds, setcmds] = useState([]);
+    const [components, setComponents] = useState([]);
+
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;
         }
-        const mountPoint = document.createElement("div");
-        if (parentRef.current) {
-            parentRef.current.appendChild(mountPoint);
-            const root = ReactDOM.createRoot(mountPoint);
-            root.render(<Command setcmds={setcmds} />);
-        }
+
+        // Instead of using ReactDOM.createRoot, update state to render new Command
+        setComponents((prev) => [...prev, <Command key={prev.length} setcmds={setcmds} />]);
     }, [cmds]);
 
     return (
@@ -30,6 +28,9 @@ const RightContainer = () => {
                 <div>Welcome to my interactive portfolio terminal!</div>
                 <div>Type 'help' to see the available commands.</div>
             </div>
+
+            {/* Render all Command components */}
+            {components}
         </div>
     );
 };
