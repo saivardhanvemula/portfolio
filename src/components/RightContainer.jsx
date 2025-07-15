@@ -5,7 +5,7 @@ const RightContainer = () => {
     const parentRef = useRef(null);
     const isFirstRender = useRef(true);
     const [cmds, setcmds] = useState([]);
-    const [components, setComponents] = useState([]);
+    const [commandInstances, setCommandInstances] = useState([]); // store count or id
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -13,9 +13,10 @@ const RightContainer = () => {
             console.log("First render, skipping command processing.");
             return;
         }
+
         console.log("cmds", cmds);
-        // Instead of using ReactDOM.createRoot, update state to render new Command
-        setComponents((prev) => [...prev, <Command key={prev.length} setcmds={setcmds} />]);
+        // Instead of storing JSX, store an index
+        setCommandInstances((prev) => [...prev, prev.length]);
     }, [cmds]);
 
     return (
@@ -30,8 +31,10 @@ const RightContainer = () => {
                 <div>Type 'help' to see the available commands.</div>
             </div>
 
-            {/* Render all Command components */}
-            {components}
+            {/* Render each Command component */}
+            {commandInstances.map((id) => (
+                <Command key={id} setcmds={setcmds} />
+            ))}
         </div>
     );
 };
