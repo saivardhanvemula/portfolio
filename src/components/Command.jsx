@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 const Command = ({ setcmds }) => {
     const [input, setInput] = useState("");
+    const [response, setresponse] = useState("");
     const inputRef = useRef(null);
     const [isSubmitted, setisSubmitted] = useState(false);
     useEffect(() => {
@@ -9,8 +10,21 @@ const Command = ({ setcmds }) => {
     }, []);
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
-            setcmds((prevcmds) => [...prevcmds, input]);
             setInput(e.target.value);
+            console.log(input);
+            if (input == "") {
+                setcmds((prevcmds) => [...prevcmds]);
+                return;
+            }
+            if(input.toLocaleLowerCase()=="clear"){
+                console.log("clearing");
+            }
+            setcmds((prevcmds) => [...prevcmds, input]);
+            if (input.toLocaleLowerCase() == "help") {
+                setresponse("helpingg.....");
+            } else {
+                setresponse(`${input} is not recognized as a command`);
+            }
             setisSubmitted(true);
         }
     };
@@ -27,11 +41,7 @@ const Command = ({ setcmds }) => {
                     className="cmd"
                 />
             </div>
-            {isSubmitted && (
-                <div className="response">
-                    "{input}" is not recognized as a command
-                </div>
-            )}
+            {isSubmitted && <div className="response">{response}</div>}
         </div>
     );
 };

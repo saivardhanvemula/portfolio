@@ -69,6 +69,11 @@ body {
     display: flex;
     height: auto;
     flex: 1;
+    overflow-y: scroll;
+}
+.container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Optional: just make scrollbar invisible */
 }
 .cursor {
   display: inline-block;
