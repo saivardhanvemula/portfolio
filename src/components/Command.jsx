@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { getHelp, getProjects, getSkills } from "../helpers/services.ts";
+
 
 const Command = ({ setcmds }) => {
     const [input, setInput] = useState("");
@@ -8,23 +10,43 @@ const Command = ({ setcmds }) => {
     useEffect(() => {
         inputRef.current?.focus();
     }, []);
-    const handleKeyDown = (e) => {
+    const handleKeyDown = async (e) => {
         if (e.key === "Enter") {
             setInput(e.target.value);
             console.log(input);
-            if (input == "") {
-                setcmds((prevcmds) => [...prevcmds]);
-                return;
-            }
-            if(input.toLocaleLowerCase()=="clear"){
-                console.log("clearing");
-            }
             setcmds((prevcmds) => [...prevcmds, input]);
-            if (input.toLocaleLowerCase() == "help") {
-                setresponse("helpingg.....");
-            } else {
-                setresponse(`${input} is not recognized as a command`);
+            let res;
+            switch (input.toLocaleLowerCase()) {
+                case "clear":
+                    res= "Terminal cleared.";
+                    setresponse(res);
+                    setcmds([]);
+                    setresponse("");
+                    setInput("");
+                    setisSubmitted(false);
+                    return;
+                case "help":
+                    res = await getHelp();
+                    setresponse(res);
+                    break;
+                case "projects":
+                    res=await getProjects();
+                    setresponse(res);
+                    break;
+                case "skills":
+                    res=await getSkills();
+                    setresponse(res);
+                    break;
+                default:
+                    res = `${input} is not recognized as a command. Type 'help' to see available commands.`;
+                    setresponse(res);
+                    break;
             }
+            // if (input.toLocaleLowerCase() == "help") {
+            //     const res = getHelp();
+            //     setresponse(res);
+            //     // setresponse("helpingg.....");
+            // }
             setisSubmitted(true);
         }
     };
