@@ -17,6 +17,8 @@ const Command = ({ setcmds }) => {
             setcmds((prevcmds) => [...prevcmds, input]);
             let res;
             switch (input.toLocaleLowerCase()) {
+                case "":
+                    setcmds((prevcmds) => [...prevcmds]);
                 case "clear":
                     res= "Terminal cleared.";
                     setresponse(res);
