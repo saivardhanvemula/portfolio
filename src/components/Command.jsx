@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getHelp, getProjects, getSkills } from "../helpers/services.ts";
 
-
 const Command = ({ setcmds }) => {
     const [input, setInput] = useState("");
     const [response, setresponse] = useState("");
@@ -14,13 +13,12 @@ const Command = ({ setcmds }) => {
         if (e.key === "Enter") {
             setInput(e.target.value);
             console.log(input);
-            setcmds((prevcmds) => [...prevcmds, input]);
             let res;
             switch (input.toLocaleLowerCase()) {
                 case "":
                     setcmds((prevcmds) => [...prevcmds]);
                 case "clear":
-                    res= "Terminal cleared.";
+                    res = "Terminal cleared.";
                     setresponse(res);
                     setcmds([]);
                     setresponse("");
@@ -32,11 +30,11 @@ const Command = ({ setcmds }) => {
                     setresponse(res);
                     break;
                 case "projects":
-                    res=await getProjects();
+                    res = await getProjects();
                     setresponse(res);
                     break;
                 case "skills":
-                    res=await getSkills();
+                    res = await getSkills();
                     setresponse(res);
                     break;
                 default:
@@ -44,6 +42,7 @@ const Command = ({ setcmds }) => {
                     setresponse(res);
                     break;
             }
+            setcmds((prevcmds) => [...prevcmds, input]);
             // if (input.toLocaleLowerCase() == "help") {
             //     const res = getHelp();
             //     setresponse(res);
