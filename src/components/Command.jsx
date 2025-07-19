@@ -1,70 +1,57 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getHelp, getProjects, getSkills } from "../helpers/services.ts";
 
-const Command = ({ setcmds }) => {
+const Command = ({ onSubmit }) => {
     const [input, setInput] = useState("");
-    const [response, setresponse] = useState("");
     const inputRef = useRef(null);
-    const [isSubmitted, setisSubmitted] = useState(false);
+
     useEffect(() => {
         inputRef.current?.focus();
     }, []);
+
     const handleKeyDown = async (e) => {
         if (e.key === "Enter") {
-            setInput(e.target.value);
-            console.log(input);
-            let res;
-            switch (input.toLocaleLowerCase()) {
+            const trimmed = input.trim().toLowerCase();
+            let res = "";
+            switch (trimmed) {
                 case "":
-                    setcmds((prevcmds) => [...prevcmds]);
+                    break;
                 case "clear":
-                    res = "Terminal cleared.";
-                    setresponse(res);
-                    setcmds([]);
-                    setresponse("");
-                    setInput("");
-                    setisSubmitted(false);
-                    return;
+                    onSubmit("clear", null);
+                    break;
                 case "help":
                     res = await getHelp();
-                    setresponse(res);
+                    onSubmit(input, res);
                     break;
                 case "projects":
                     res = await getProjects();
-                    setresponse(res);
+                    onSubmit(input, res);
                     break;
                 case "skills":
                     res = await getSkills();
-                    setresponse(res);
+                    onSubmit(input, res);
                     break;
                 default:
                     res = `${input} is not recognized as a command. Type 'help' to see available commands.`;
-                    setresponse(res);
+                    onSubmit(input, res);
                     break;
             }
-            setcmds((prevcmds) => [...prevcmds, input]);
-            // if (input.toLocaleLowerCase() == "help") {
-            //     const res = getHelp();
-            //     setresponse(res);
-            //     // setresponse("helpingg.....");
-            // }
-            setisSubmitted(true);
+
+            setInput("");
         }
     };
+
     return (
-        <div>
-            <div className="command-input">
-                <span className="terminal">{"saivardhan@portfolio:~$ "}</span>
-                <input
-                    type="text"
-                    ref={inputRef}
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    className="cmd"
-                />
-            </div>
-            {isSubmitted && <div className="response">{response}</div>}
+        <div className="command-input">
+            <span className="terminal">{"saivardhan@portfolio:~$ "}</span>
+            <input
+                type="text"
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="cmd"
+            />
         </div>
     );
 };

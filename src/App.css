@@ -1,7 +1,7 @@
 body {
-  overflow: hidden;
-  background-color: black;
-  margin: 0;
+    overflow: hidden;
+    background-color: black;
+    margin: 0;
 }
 #root {
     font-family: Raster, monospace;
@@ -43,7 +43,7 @@ body {
     flex-direction: column;
     gap: 5px;
 }
-.cmd{
+.cmd {
     color: #00ff00;
     font-size: 1.1rem;
 }
@@ -76,26 +76,28 @@ body {
     background: transparent; /* Optional: just make scrollbar invisible */
 }
 .cursor {
-  display: inline-block;
-  width: 4px;
-  height: .75em;
-  background-color: #00ff00;
-  animation: blink 1s step-end infinite;
+    display: inline-block;
+    width: 4px;
+    height: 0.75em;
+    background-color: #00ff00;
+    animation: blink 1s step-end infinite;
 }
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+    50% {
+        opacity: 0;
+    }
 }
 
-.terminal{
+.terminal {
     color: #6eb0df;
 }
-.command-input input{
-    outline:none;
+.command-input input {
+    outline: none;
     border: none;
     background: transparent;
+    font-family: Raster, monospace;
+    padding: 0;
 }
-.response{
-    margin : 8px 0;
+.response {
+    margin: 8px 0;
 }

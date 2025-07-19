@@ -1,35 +1,50 @@
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom/client";
+import React, { useRef, useState } from "react";
 import Command from "./Command";
 
 const RightContainer = () => {
-  const parentRef = useRef(null);
-  const isFirstRender = useRef(true);
-  const [cmds, setcmds] = useState([]);
-  useEffect(() => {
-    if (isFirstRender.current) {
-      const mountPoint = document.createElement("div");
-      if (parentRef.current) {
-        parentRef.current.appendChild(mountPoint);
-        const root = ReactDOM.createRoot(mountPoint);
-        root.render(<Command setcmds={setcmds} />);
-      }
-    }
-  }, [cmds]);
+    const parentRef = useRef(null);
+    const [cmds, setCmds] = useState([]);
+    const [showWelcome, setShowWelcome] = useState(true);
 
-  return (
-    <div className="right" ref={parentRef}>
-      <div>
-        <span className="terminal">{"saivardhan@portfolio:~$  "}</span>
-        <span className="cmd">welcome</span>
-      </div>
-      <div className="response">
-        <div>Hi, I am Sai Vardhan, a full-stack developer.</div> <br />
-        <div>Welcome to my interactive portfolio terminal!</div>
-        <div>Type 'help' to see the available commands.</div>
-      </div>
-    </div>
-  );
+    const handleAddCmd = (input, response) => {
+        if (input.trim().toLowerCase() === "clear") {
+            setCmds([]);
+            setShowWelcome(false);
+        } else {
+            setCmds(prev => [...prev, { input, response }]);
+        }
+    };
+
+    return (
+        <div className="right" ref={parentRef}>
+            {showWelcome && (
+                <>
+                    <div>
+                        <span className="terminal">{"saivardhan@portfolio:~$  "}</span>
+                        <span className="cmd">welcome</span>
+                    </div>
+                    <div className="response">
+                        <div>Hi, I am Sai Vardhan, a full-stack developer.</div>
+                        <br />
+                        <div>Welcome to my interactive portfolio terminal!</div>
+                        <div>Type 'help' to see the available commands.</div>
+                    </div>
+                </>
+            )}
+
+            {cmds.map((item, index) => (
+                <div key={index}>
+                    <div className="command-input">
+                        <span className="terminal">{"saivardhan@portfolio:~$ "}</span>
+                        <span className="cmd">{item.input}</span>
+                    </div>
+                    {item.response && <div className="response">{item.response}</div>}
+                </div>
+            ))}
+
+            <Command onSubmit={handleAddCmd} />
+        </div>
+    );
 };
 
 export default RightContainer;
