@@ -45,7 +45,9 @@ const RightContainer = () => {
                     {item.response && (
                         <div className="response">
                             {item.response.map((res, index) => (
-                                <div key={res}>{res}</div>
+                                <div key={index}>
+                                    {res === "" ? <br /> : res}
+                                </div>
                             ))}
                         </div>
                     )}

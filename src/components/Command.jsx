@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getHelp, getProjects, getSkills } from "../helpers/services.ts";
+import { getHelp, getProjects, getSkills, getWelcome } from "../helpers/services.ts";
 
 const Command = ({ onSubmit }) => {
     const [input, setInput] = useState("");
@@ -15,6 +15,11 @@ const Command = ({ onSubmit }) => {
             let res = "";
             switch (trimmed) {
                 case "":
+                    break;
+                case "welcome":
+                    res=await getWelcome();
+                    console.log("res",res)
+                    onSubmit(input, res);
                     break;
                 case "clear":
                     onSubmit("clear", null);
