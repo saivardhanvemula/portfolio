@@ -11,7 +11,7 @@ const RightContainer = () => {
             setCmds([]);
             setShowWelcome(false);
         } else {
-            setCmds(prev => [...prev, { input, response }]);
+            setCmds((prev) => [...prev, { input, response }]);
         }
     };
 
@@ -20,7 +20,9 @@ const RightContainer = () => {
             {showWelcome && (
                 <>
                     <div>
-                        <span className="terminal">{"saivardhan@portfolio:~$  "}</span>
+                        <span className="terminal">
+                            {"saivardhan@portfolio:~$  "}
+                        </span>
                         <span className="cmd">welcome</span>
                     </div>
                     <div className="response">
@@ -35,10 +37,18 @@ const RightContainer = () => {
             {cmds.map((item, index) => (
                 <div key={index}>
                     <div className="command-input">
-                        <span className="terminal">{"saivardhan@portfolio:~$ "}</span>
+                        <span className="terminal">
+                            {"saivardhan@portfolio:~$ "}
+                        </span>
                         <span className="cmd">{item.input}</span>
                     </div>
-                    {item.response && <div className="response">{item.response}</div>}
+                    {item.response && (
+                        <div className="response">
+                            {item.response.map((res, index) => (
+                                <div key={res}>{res}</div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             ))}
 

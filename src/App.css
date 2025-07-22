@@ -101,3 +101,6 @@ body {
 .response {
     margin: 8px 0;
 }
+.response div{
+    margin: 3px 0;
+}
