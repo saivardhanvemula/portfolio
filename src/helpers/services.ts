@@ -2,6 +2,7 @@
 import axios from "axios";
 import { getHelpFormatter } from "../utils/getHelpFormatter";
 import { getWelcomeFormatter } from "../utils/getWelcomeFormatter";
+import { getSkillsFormatter } from "../utils/getSkillsFormatter";
 const BASE_URL =
     import.meta.env.VITE_REACT_APP_BASE_URL || "http://localhost:8000";
 
@@ -24,8 +25,7 @@ async function getHelp() {
 }
 async function getSkills() {
     const res = await axios.get(`${BASE_URL}/skills`);
-    console.log("Help response:", res.data);
-    return [res.data];
+    return getSkillsFormatter(res.data);
 }
 
 export { getHelp, getProjects, getSkills, getWelcome };
