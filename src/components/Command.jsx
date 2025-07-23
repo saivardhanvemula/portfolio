@@ -37,7 +37,7 @@ const Command = ({ onSubmit }) => {
                     onSubmit(input, res);
                     break;
                 default:
-                    res = `${input} is not recognized as a command. Type 'help' to see available commands.`;
+                    res = [`${input} is not recognized as a command. Type 'help' to see available commands.`];
                     onSubmit(input, res);
                     break;
             }
