@@ -13,7 +13,7 @@ async function getWelcome() {
 }
 async function getProjects() {
     const res = await axios.get(`${BASE_URL}/projects`);
-    return res.data;
+    return [res.data];
 }
 
 async function getHelp() {
@@ -25,7 +25,7 @@ async function getHelp() {
 async function getSkills() {
     const res = await axios.get(`${BASE_URL}/skills`);
     console.log("Help response:", res.data);
-    return res.data;
+    return [res.data];
 }
 
 export { getHelp, getProjects, getSkills, getWelcome };
