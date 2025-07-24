@@ -1,4 +1,11 @@
-export function getHelpFormatter(data: { command: string; description: string }[]) {
-  const rows = data.map((item) => `${item.command} - ${item.description}`);
+type HelpCommand = { command: string; description: string };
+
+export function getHelpFormatter(data: HelpCommand[]): string[] {
+  const maxLen = Math.max(...data.map(item => item.command.length));
+
+  const rows = data.map(
+    item => `${item.command.padEnd(maxLen)} - ${item.description}`
+  );
+  console.log("rows:", rows.join("/n"));
   return rows;
 }

@@ -26,10 +26,10 @@ const RightContainer = () => {
                         <span className="cmd">welcome</span>
                     </div>
                     <div className="response">
-                        <div>Hi, I am Sai Vardhan, a full-stack developer.</div>
+                        <pre>Hi, I am Sai Vardhan, a full-stack developer.</pre>
                         <br />
-                        <div>Welcome to my interactive portfolio terminal!</div>
-                        <div>Type 'help' to see the available commands.</div>
+                        <pre>Welcome to my interactive portfolio terminal!</pre>
+                        <pre>Type 'help' to see the available commands.</pre>
                     </div>
                 </>
             )}
@@ -46,7 +46,7 @@ const RightContainer = () => {
                         <div className="response">
                             {item.response.map((res, index) => (
                                 <div key={index}>
-                                    {res === "" ? <br /> : res}
+                                    {res === "" ? <br /> : <pre>{res}</pre>}
                                 </div>
                             ))}
                         </div>

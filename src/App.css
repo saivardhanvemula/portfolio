@@ -98,9 +98,12 @@ body {
     font-family: Raster, monospace;
     padding: 0;
 }
-.response {
+/* .response {
     margin: 8px 0;
-}
-.response div{
+} */
+/* .response div{
     margin: 3px 0;
+} */
+.response pre{
+    margin: 0;
 }
