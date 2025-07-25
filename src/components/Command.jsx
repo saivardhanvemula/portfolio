@@ -48,7 +48,7 @@ const Command = ({ onSubmit }) => {
 
     return (
         <div className="command-input">
-            <span className="terminal">{"saivardhan@portfolio:~$ "}</span>
+            <pre className="terminal">{"saivardhan@portfolio:~$ "}</pre>
             <input
                 type="text"
                 ref={inputRef}

@@ -20,10 +20,10 @@ const RightContainer = () => {
             {showWelcome && (
                 <>
                     <div>
-                        <span className="terminal">
+                        <pre className="terminal">
                             {"saivardhan@portfolio:~$  "}
-                        </span>
-                        <span className="cmd">welcome</span>
+                        </pre>
+                        <pre className="cmd">welcome</pre>
                     </div>
                     <div className="response">
                         <pre>Hi, I am Sai Vardhan, a full-stack developer.</pre>
@@ -37,10 +37,10 @@ const RightContainer = () => {
             {cmds.map((item, index) => (
                 <div key={index}>
                     <div className="command-input">
-                        <span className="terminal">
+                        <pre className="terminal">
                             {"saivardhan@portfolio:~$ "}
-                        </span>
-                        <span className="cmd">{item.input}</span>
+                        </pre>
+                        <pre className="cmd">{item.input}</pre>
                     </div>
                     {item.response && (
                         <div className="response">
