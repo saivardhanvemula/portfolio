@@ -1,8 +1,17 @@
 import React, { useRef, useState } from "react";
-import Command from "./Command";
+import { Welcome } from "./Welcome";
+import { Help } from "./Help";
+import { Skills } from "./Skills";
+import { Contact } from "./Contact";
+import { Projects } from "./Projects";
+import { Experience } from "./Experience";
+// import About from "./About";
+// import Contact from "./Contact";
 
 const RightContainer = () => {
     const parentRef = useRef(null);
+    const inputRef = useRef(null);
+    const [input, setInput] = useState("");
     const [cmds, setCmds] = useState([]);
     const [showWelcome, setShowWelcome] = useState(true);
 
@@ -15,24 +24,43 @@ const RightContainer = () => {
         }
     };
 
+    const getCommandComponent = (input) => {
+        const cmd = input.trim().toLowerCase();
+        switch (cmd) {
+            case "help":
+                return <Help />;
+            case "welcome":
+                return <Welcome name={"welcome"} />;
+            case "about":
+                return <Welcome name={"about"} />;
+            case "skills":
+                return <Skills />;
+            case "contact":
+                return <Contact />;
+            case "projects":
+                return <Projects/>;
+            case "experience":
+                return <Experience/>
+            default:
+                return (
+                    <div className="response">
+                        <pre>{`Command not found: ${input}`}</pre>
+                        <pre>type 'help' for available commands.</pre>
+                    </div>
+                );
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter" && input.trim() !== "") {
+            handleAddCmd(input, []);
+            setInput("");
+        }
+    };
+
     return (
         <div className="right" ref={parentRef}>
-            {showWelcome && (
-                <>
-                    <div>
-                        <pre className="terminal">
-                            {"saivardhan@portfolio:~$  "}
-                        </pre>
-                        <pre className="cmd">welcome</pre>
-                    </div>
-                    <div className="response">
-                        <pre>Hi, I am Sai Vardhan, a full-stack developer.</pre>
-                        <br />
-                        <pre>Welcome to my interactive portfolio terminal!</pre>
-                        <pre>Type 'help' to see the available commands.</pre>
-                    </div>
-                </>
-            )}
+            {showWelcome && <Welcome name={"welcome"}/>}
 
             {cmds.map((item, index) => (
                 <div key={index}>
@@ -42,19 +70,21 @@ const RightContainer = () => {
                         </pre>
                         <pre className="cmd">{item.input}</pre>
                     </div>
-                    {item.response && (
-                        <div className="response">
-                            {item.response.map((res, index) => (
-                                <div key={index}>
-                                    {res === "" ? <br /> : <pre>{res}</pre>}
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    {getCommandComponent(item.input)}
                 </div>
             ))}
 
-            <Command onSubmit={handleAddCmd} />
+            <div className="command-input">
+                <pre className="terminal">{"saivardhan@portfolio:~$ "}</pre>
+                <input
+                    type="text"
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="cmd"
+                />
+            </div>
         </div>
     );
 };

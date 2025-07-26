@@ -1,31 +1,50 @@
-/// <reference types="vite/client" />
 import axios from "axios";
-import { getHelpFormatter } from "../utils/getHelpFormatter";
-import { getWelcomeFormatter } from "../utils/getWelcomeFormatter";
 import { getSkillsFormatter } from "../utils/getSkillsFormatter";
-const BASE_URL =
-    import.meta.env.VITE_REACT_APP_BASE_URL || "http://localhost:8000";
+const BASE_URL = "http://localhost:8001";
 
-console.log("BASE_URL:", BASE_URL);
-
-async function getWelcome() {
-    const res = await axios.get(`${BASE_URL}/welcome`);
-    return getWelcomeFormatter(res.data);
+function getWelcome() {
+    const res = [
+        "Hi, I am Sai Vardhan, a full-stack developer.",
+        "",
+        "Welcome to my interactive portfolio terminal!\n",
+        "Type 'help' to see the available commands.",
+    ];
+    return res;
+}
+function getHelp() {
+    const data = [
+        "help       - Displays a list of available commands",
+        "welcome    - Displays information about me",
+        "projects   - Lists my featured projects",
+        "contact    - Shows my contact information",
+        "skills     - Displays my technical skillset",
+        "experience - Shows my professional experience and roles",
+        "clear      - Clears the terminal screen",
+    ];
+    return data;
 }
 async function getProjects() {
     const res = await axios.get(`${BASE_URL}/projects`);
     return [res.data];
 }
 
-async function getHelp() {
-    const res = await axios.get(`${BASE_URL}/help`);
-    console.log("Help response:", res.data);
-    return getHelpFormatter(res.data);
-    // return "help";
+function getSkills() {
+    const res = [
+        "Frontend    - HTML, CSS, JavaScript, ReactJs, NextJs, Tailwind CSS",
+        "Backend     - NodeJs, ExpressJs, Deno",
+        "Database    - MongoDB, PostgreSql, Redis, Supabase",
+        "Tools       - Postman, Prisma, Mongoose, dotenv",
+        "Deployment  - Github, Vercel, Deno Deploy",
+        "Other       - TypeScript, C++, Python, DSA, OOP",
+    ];
+    return res;
 }
-async function getSkills() {
-    const res = await axios.get(`${BASE_URL}/skills`);
-    return getSkillsFormatter(res.data);
+function getContact() {
+    const res = [
+        "email : saivardhanvemulamncl@gmail.com",
+        "linkedin : https://www.linkedin.com/in/sai-vardhan-vemula-58a46b274",
+    ];
+    return res;
 }
 
-export { getHelp, getProjects, getSkills, getWelcome };
+export { getHelp, getProjects, getSkills, getWelcome, getContact };

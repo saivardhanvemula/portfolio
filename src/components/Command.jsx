@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getHelp, getProjects, getSkills, getWelcome } from "../helpers/services.ts";
+import {
+    getContact,
+    getHelp,
+    getProjects,
+    getSkills,
+    getWelcome,
+} from "../helpers/services.ts";
 
 const Command = ({ onSubmit }) => {
     const [input, setInput] = useState("");
@@ -17,8 +23,7 @@ const Command = ({ onSubmit }) => {
                 case "":
                     break;
                 case "welcome":
-                    res=await getWelcome();
-                    console.log("res",res)
+                    res = await getWelcome();
                     onSubmit(input, res);
                     break;
                 case "clear":
@@ -36,8 +41,14 @@ const Command = ({ onSubmit }) => {
                     res = await getSkills();
                     onSubmit(input, res);
                     break;
+                case "contact":
+                    res = await getContact();
+                    onSubmit(input, res);
+                    break;
                 default:
-                    res = [`${input} is not recognized as a command. Type 'help' to see available commands.`];
+                    res = [
+                        `${input} is not recognized as a command. Type 'help' to see available commands.`,
+                    ];
                     onSubmit(input, res);
                     break;
             }
