@@ -1,17 +1,46 @@
 export const Projects = () => {
-    const data = [
-        "Frontend    - HTML, CSS, JavaScript, ReactJs, NextJs, Tailwind CSS",
-        "Backend     - NodeJs, ExpressJs, Deno",
-        "Database    - MongoDB, PostgreSql, Redis, Supabase",
-        "Tools       - Postman, Prisma, Mongoose, dotenv",
-        "Deployment  - Github, Vercel, Deno Deploy",
-        "Other       - TypeScript, C++, Python, DSA, OOP",
+    const projects = [
+        {
+            name: "Portfolio Website",
+            desc: "Personal portfolio built with React and Tailwind CSS.",
+            link: "https://your-portfolio-link.com",
+            tech: "React, Tailwind CSS, Vercel",
+        },
+        {
+            name: "Chat App",
+            desc: "Real-time chat application with authentication.",
+            link: "https://your-chat-app-link.com",
+            tech: "Node.js, Socket.io, MongoDB",
+        },
+        {
+            name: "Blog Platform",
+            desc: "A markdown blog platform with comments and tags.",
+            link: "https://your-blog-link.com",
+            tech: "Next.js, PostgreSQL, Prisma",
+        },
     ];
+
     return (
-            <div className="response">
-                {data.map((item, index) => (
-                    <pre key={index}>{item}</pre>
-                ))}
-            </div>
+        <div className="response">
+            {projects.map((proj, idx) => (
+                <div key={idx}>
+                    <pre>
+                        {`${proj.name}`}
+                    </pre>
+                    <pre>{`   Description: ${proj.desc}`}</pre>
+                    <pre>{`   Tech: ${proj.tech}`}</pre>
+                    <pre>
+                        {`   Link: `}
+                        <a
+                            href={proj.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {proj.link}
+                        </a>
+                    </pre>
+                </div>
+            ))}
+        </div>
     );
 };

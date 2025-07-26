@@ -5,7 +5,7 @@ export const Help = () => {
         "projects   - Lists my featured projects",
         "contact    - Shows my contact information",
         "skills     - Displays my technical skillset",
-        "experience - Shows my professional experience and roles",
+        // "experience - Shows my professional experience and roles",
         "clear      - Clears the terminal screen",
     ]
     return (
