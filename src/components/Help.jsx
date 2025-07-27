@@ -3,9 +3,8 @@ export const Help = () => {
         "help       - Displays a list of available commands",
         "welcome    - Displays information about me",
         "projects   - Lists my featured projects",
-        "contact    - Shows my contact information",
         "skills     - Displays my technical skillset",
-        // "experience - Shows my professional experience and roles",
+        "contact    - Shows my contact information",
         "clear      - Clears the terminal screen",
     ]
     return (
