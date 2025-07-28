@@ -37,8 +37,8 @@ const RightContainer = () => {
                 return <Contact />;
             case "projects":
                 return <Projects/>;
-            case "experience":
-                return <Experience/>
+            // case "experience":
+            //     return <Experience/>
             default:
                 return (
                     <div className="response">
